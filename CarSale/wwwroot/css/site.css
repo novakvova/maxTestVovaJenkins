@@ -4353,10 +4353,12 @@ ul {
 }
 
 form {
-    display: inline-block
+    display: inline-block;
+    background-color: #333434
 }
 
 input {
+    position: absolute;
     background: #fff
 }
 
@@ -4390,9 +4392,40 @@ input {
     cursor: pointer
 }
 
-.btn_search:hover {
-    background-color: #4298d5
+.btn_login {
+    margin-top: 7px;
+    margin-right: 3px;
+    border: 2px solid #a6daff;
+    float: right;
+    background-color: #0f5b91;
+    font-size: 14px;
+    font-family: open_sansbold;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer
 }
+
+    .btn_login:hover {
+        background-color: #4298d5
+    }
+
+.btn_register {
+    margin-top: 7px;
+    border: 2px solid #a6daff;
+    float: right;
+    background-color: #0f5b91;
+    font-size: 14px;
+    font-family: open_sansbold;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer
+}
+
+    .btn_register:hover, .btn_search:hover {
+        background-color: #4298d5
+    }
 
 .btn_reset {
     width: 19%;
@@ -4414,6 +4447,11 @@ input {
         font-size: 10px;
         height: 25px;
         width: 120px
+    }
+
+    .btn_login, .btn_register {
+        margin-top: 4px;
+        font-size: 12px
     }
 
     .btn_search {
@@ -5055,5 +5093,4 @@ body {
     background-repeat: no-repeat;
     background-position: center
 }
-
 /*# sourceMappingURL=main.css.map */
