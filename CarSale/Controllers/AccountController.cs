@@ -48,7 +48,7 @@ namespace CarSale.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("RegisterViewModel", "Register");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 foreach (var error in result.Errors)
