@@ -1,0 +1,223 @@
+﻿@inject SignInManager<AppUser> SignInManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarSale</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar-menu hidden">
+            <div class="container">
+                <div class="col">
+                    <div class="row">
+                        <ul class="navbar-pc d-none d-lg-block">
+                            <li class="home-icon"><i class="fa fa-home fa-2x"></i></li>
+                            <li><a href="#" class="nav-item">Pre-Owned Cars</a></li>
+                            <li><a href="#" class="nav-item">Finance</a></li>
+                            <li><a href="#" class="nav-item">Service</a></li>
+                            <li><a href="#" class="nav-item">News</a></li>
+                            <li><a href="#" class="nav-item">Careers</a></li>
+                            <li><a href="#" class="nav-item">Meet Our Team</a></li>
+                            <li><a href="#" class="nav-item">Contact Us</a></li>
+                            <li><a href="#" class="nav-item">About Us</a></li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <button type="submit" class=" btn btn_account" asp-controller="Portfolio" asp-action="Show" >
+                                    <i class="fa fa-user"></i> My Account
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn_register" asp-controller="Account"  asp-action="Register" >Register</button>
+                                <button type="submit" class="btn btn_login" asp-controller="Account" asp-action="Login" >Login</button>
+                            }
+                        </ul>
+
+                        <div class="phone-burger d-none d-block d-sm-none d-sm-block d-xs d-lg-none">
+                            <div class="wrapper">
+                                <input type="checkbox" id="check-menu" />
+                                <label for="check-menu">MENU</label>
+                                <div class="burger-line first"></div>
+                                <div class="burger-line second"></div>
+                                <div class="burger-line third"></div>
+                                <div class="burger-line fourth"></div>
+                                <nav class="main-menu">
+                                    <a href="#">Pre-Owned Cars</a>
+                                    <a href="#">Service</a>
+                                    <a href="#">Meet Our Team</a>
+                                    <a href="#">Contact Us</a>
+                                    <a href="#">About Us</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid header-search ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 offset-lg-8 col-md-5 offset-md-8">
+                        <div class="search-part">
+                            <h2 class="header-text">Search Pre-Owned Cars</h2>
+                            <form class="pre-owned-form">
+                                <div class="select-group">
+                                    <select class="select-item">
+                                        <option hidden value=""> Make</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Model</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Year</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Body Type</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Min Price</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Max Price</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <select class="select-item">
+                                        <option hidden value=""> Color</option>
+                                        <option value=""> Audi</option>
+                                        <option value=""> BMV</option>
+                                    </select>
+                                    <button type="submit" class=" btn btn_search">Search</button>
+                                    <button type="submit" class=" btn btn_reset">reset</button>
+                                </div>
+                                <div class="buttons-group">
+                                    <button type="submit" class=" btn btn_buy-car">
+                                        <img src="../../img/car-png.png" class="btn_buy-car-image" />
+                                        Buy <br />
+                                        Used Cars
+                                    </button>
+                                    <button type="submit" class=" btn btn_sell-car">
+                                        <img src="../../img/key-png.png" class="btn_sell-car-image" />
+                                        Sell <br />
+                                        Your Car
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid top--part">
+            <div class="container">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-12 col-md-3 wrapper">
+                            <i class="fa  fa-phone photo fa-2x photo-phone"></i>
+                            <span class="phone">
+                                <p class="top-footer-font-1 first-p">SALES CONTACT</p>
+                                <h4 class="top-footer-font-1">123 456 7890</h4>
+                            </span>
+                        </div>
+                        <div class="col-xl-3 col-sm-12 col-md-3 wrapper">
+                            <i class="fa fa-wrench photo fa-2x photo-wrench"></i>
+                            <span>
+                                <p class="top-footer-font-1">SERVICE CONTACT</p>
+                                <h4 class="top-footer-font-1">123 456 7890</h4>
+                            </span>
+                        </div>
+                        <div class="col-xl-3 col-sm-12 col-md-3 wrapper">
+                            <i class="fa fa-cogs photo fa-2x photo-cogs"></i>
+                            <span>
+                                <p class="top-footer-font-1">PARTS CONTACT</p>
+                                <h4 class="top-footer-font-1">123 456 7890</h4>
+                            </span>
+                        </div>
+                        <div class="col-xl-3 col-sm-12 col-md-3 wrapper">
+                            <i class="fa fa-check-square-o photo fa-2x photo-square"></i>
+                            <span>
+                                <p class="top-footer-font-1">ONLINE APPRAISAL</p>
+                                <p class="p-schedule">Schedule online visit.</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid bot--part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 wrapper_b">
+                        <p class="bot-footer-font-1 ">
+                            Copyright © 2020 All rights reserved.
+                        </p>
+                    </div>
+                    <div class="col-md-4 wrapper_b">
+                        <p class="bot-footer-font-1 ">
+                            <a href="#" class="bot-footer-font-1">Text & Conditons</a>
+                            <a href="#" class="bot-footer-font-2">Privacy Policy </a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 wrapper_b">
+                        <p class="bot-footer-font-1 ">
+                            Follow Us :
+                            <a href="#" class="bot-footer-font-1 fa fa-facebook-square photo-face fa-lg "></a>
+                            <a href="#" class="bot-footer-font-1 fa fa-twitter-square photo-face fa-lg "></a>
+                            <a href="#" class="bot-footer-font-1 fa fa-instagram photo-face fa-lg "></a>
+                            <a href="#" class="bot-footer-font-1 fa fa-google-plus-square photo-face fa-lg "></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
