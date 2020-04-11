@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Route } from 'react-router';
 
+import CarList from "./components/CarList/CarList"
 
 export default () => (
-  <div>
+    <Fragment>
         <h1>CarSale</h1>
 
-  </div>
+    </Fragment>
 );
