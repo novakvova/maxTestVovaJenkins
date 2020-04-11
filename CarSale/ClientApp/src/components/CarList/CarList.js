@@ -3,7 +3,7 @@ class CarList extends Component {
    
     render() {
         return (
-            <div class className="listCar">
+            <div className="listCar">
                 <div className="container">
                     <div className="row" id="ads">
                         <div className="col-xl-4 col-sm-12 col-md-6 ">
