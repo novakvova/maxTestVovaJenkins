@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import './CarList.scss';
 class CarList extends Component {
    
     render() {
