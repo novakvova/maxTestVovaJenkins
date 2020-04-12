@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-
-namespace CarSale.Models
+﻿namespace CarSale.Models
 {
     public class ErrorViewModel
     {
