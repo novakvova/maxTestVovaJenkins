@@ -4166,7 +4166,7 @@ body {
   height: 230px;
   max-height: 230px;
   object-fit: cover;
-  object-position: 50% 0; }
+  /*object-position: 50% 0;*/ }
 
 .listCar {
   margin: 0;
