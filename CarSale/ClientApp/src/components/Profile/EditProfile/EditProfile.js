@@ -24,7 +24,6 @@ class EditProfile extends Component {
 									<h6>Upload a different photo...</h6>
 									<input
 										type="file"
-										asp-for="Img"
 										className="text-center center-block file-upload"
 										accept=".png,.jpg,.jpeg,.gif,.tif"
 									/>
@@ -82,7 +81,7 @@ class EditProfile extends Component {
 											placeholder="City"
 											title="Enter yourCity"
 										/>
-										<span asp-validation-for="City" className="text-danger"></span>
+										<span className="text-danger"></span>
 									</div>
 								</div>
 
