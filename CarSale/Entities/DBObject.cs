@@ -1,9 +1,5 @@
 ﻿using CarSale.Models;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CarSale.Entities
 {
@@ -16,11 +12,11 @@ namespace CarSale.Entities
                 content.AddRange(
                    new AppUser
                    {
-                      Name = "Robert",
-                      Surname= "Deniro",
-                      Country = "USA",
-                      City = "New York",
-                      Img = "https://img.icons8.com/officel/2x/user.png"
+                       Name = "Robert",
+                       Surname = "Deniro",
+                       Country = "USA",
+                       City = "New York",
+                       Img = "https://img.icons8.com/officel/2x/user.png"
 
                    },
                      new AppUser
