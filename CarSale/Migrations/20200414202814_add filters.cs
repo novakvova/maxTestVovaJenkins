@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace CarSale.Migrations
 {
-    public partial class init : Migration
+    public partial class addfilters : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,6 +50,62 @@ namespace CarSale.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblCars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Date = table.Column<DateTime>(nullable: false),
+                    UniqueName = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblCars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblFilterNames",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 250, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblFilterNames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblFilterValues",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 250, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblFilterValues", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblMakes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblMakes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,6 +214,88 @@ namespace CarSale.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "tblFilterNameGroups",
+                columns: table => new
+                {
+                    FilterNameId = table.Column<int>(nullable: false),
+                    FilterValueId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblFilterNameGroups", x => new { x.FilterValueId, x.FilterNameId });
+                    table.UniqueConstraint("AK_tblFilterNameGroups_FilterNameId_FilterValueId", x => new { x.FilterNameId, x.FilterValueId });
+                    table.ForeignKey(
+                        name: "FK_tblFilterNameGroups_tblFilterNames_FilterNameId",
+                        column: x => x.FilterNameId,
+                        principalTable: "tblFilterNames",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_tblFilterNameGroups_tblFilterValues_FilterValueId",
+                        column: x => x.FilterValueId,
+                        principalTable: "tblFilterValues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblFilters",
+                columns: table => new
+                {
+                    FilterNameId = table.Column<int>(nullable: false),
+                    FilterValueId = table.Column<int>(nullable: false),
+                    CarId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblFilters", x => new { x.CarId, x.FilterValueId, x.FilterNameId });
+                    table.UniqueConstraint("AK_tblFilters_CarId_FilterNameId_FilterValueId", x => new { x.CarId, x.FilterNameId, x.FilterValueId });
+                    table.ForeignKey(
+                        name: "FK_tblFilters_tblCars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "tblCars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_tblFilters_tblFilterNames_FilterNameId",
+                        column: x => x.FilterNameId,
+                        principalTable: "tblFilterNames",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_tblFilters_tblFilterValues_FilterValueId",
+                        column: x => x.FilterValueId,
+                        principalTable: "tblFilterValues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tblMakesAndModels",
+                columns: table => new
+                {
+                    FilterMakeId = table.Column<int>(nullable: false),
+                    FilterValueId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tblMakesAndModels", x => new { x.FilterValueId, x.FilterMakeId });
+                    table.UniqueConstraint("AK_tblMakesAndModels_FilterMakeId_FilterValueId", x => new { x.FilterMakeId, x.FilterValueId });
+                    table.ForeignKey(
+                        name: "FK_tblMakesAndModels_tblMakes_FilterMakeId",
+                        column: x => x.FilterMakeId,
+                        principalTable: "tblMakes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_tblMakesAndModels_tblFilterValues_FilterValueId",
+                        column: x => x.FilterValueId,
+                        principalTable: "tblFilterValues",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -196,6 +334,16 @@ namespace CarSale.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tblFilters_FilterNameId",
+                table: "tblFilters",
+                column: "FilterNameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tblFilters_FilterValueId",
+                table: "tblFilters",
+                column: "FilterValueId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -216,10 +364,31 @@ namespace CarSale.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "tblFilterNameGroups");
+
+            migrationBuilder.DropTable(
+                name: "tblFilters");
+
+            migrationBuilder.DropTable(
+                name: "tblMakesAndModels");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "tblCars");
+
+            migrationBuilder.DropTable(
+                name: "tblFilterNames");
+
+            migrationBuilder.DropTable(
+                name: "tblMakes");
+
+            migrationBuilder.DropTable(
+                name: "tblFilterValues");
         }
     }
 }
