@@ -3604,6 +3604,9 @@ ul {
   text-transform: uppercase;
   cursor: pointer; }
 
+.btn_account:hover {
+  background-color: #4298d5; }
+
 .btn_login {
   margin-top: 7px;
   margin-right: 3px;
@@ -3949,8 +3952,6 @@ ul {
     margin: 0px;
     text-align: center;
     padding-top: 20px; }
-  .header-search .pre-owned-form {
-    display: inline-block; }
   .header-search .select-group {
     text-align: justify;
     padding: 0 25px; }
