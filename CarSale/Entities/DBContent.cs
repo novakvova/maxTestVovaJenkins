@@ -1,4 +1,4 @@
-﻿using CarSale.Models;
+﻿using Entities.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

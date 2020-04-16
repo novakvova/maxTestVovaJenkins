@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CarSale.Models
+namespace Entities.Models
 {
     public class AppUser : IdentityUser
     {
