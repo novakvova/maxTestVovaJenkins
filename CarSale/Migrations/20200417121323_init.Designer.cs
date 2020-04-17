@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSale.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20200416202709_init")]
+    [Migration("20200417121323_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,118 @@ namespace CarSale.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CarSale.Entities.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("Mileage");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<string>("UniqueName")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tblCars");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.Filter", b =>
+                {
+                    b.Property<int>("CarId");
+
+                    b.Property<int>("FilterValueId");
+
+                    b.Property<int>("FilterNameId");
+
+                    b.HasKey("CarId", "FilterValueId", "FilterNameId");
+
+                    b.HasAlternateKey("CarId", "FilterNameId", "FilterValueId");
+
+                    b.HasIndex("FilterNameId");
+
+                    b.HasIndex("FilterValueId");
+
+                    b.ToTable("tblFilters");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.FilterName", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tblFilterNames");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.FilterNameGroup", b =>
+                {
+                    b.Property<int>("FilterValueId");
+
+                    b.Property<int>("FilterNameId");
+
+                    b.HasKey("FilterValueId", "FilterNameId");
+
+                    b.HasAlternateKey("FilterNameId", "FilterValueId");
+
+                    b.ToTable("tblFilterNameGroups");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.FilterValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tblFilterValues");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.Make", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tblMakes");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.MakesAndModels", b =>
+                {
+                    b.Property<int>("FilterValueId");
+
+                    b.Property<int>("FilterMakeId");
+
+                    b.HasKey("FilterValueId", "FilterMakeId");
+
+                    b.HasAlternateKey("FilterMakeId", "FilterValueId");
+
+                    b.ToTable("tblMakesAndModels");
+                });
 
             modelBuilder.Entity("Entities.Models.AppUser", b =>
                 {
@@ -194,6 +306,50 @@ namespace CarSale.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CarSale.Entities.Filter", b =>
+                {
+                    b.HasOne("CarSale.Entities.Car", "CarOf")
+                        .WithMany("Filtres")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CarSale.Entities.FilterName", "FilterNameOf")
+                        .WithMany("Filtres")
+                        .HasForeignKey("FilterNameId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CarSale.Entities.FilterValue", "FilterValueOf")
+                        .WithMany("Filtres")
+                        .HasForeignKey("FilterValueId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("CarSale.Entities.FilterNameGroup", b =>
+                {
+                    b.HasOne("CarSale.Entities.FilterName", "FilterNameOf")
+                        .WithMany("FilterNameGroups")
+                        .HasForeignKey("FilterNameId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CarSale.Entities.FilterValue", "FilterValueOf")
+                        .WithMany("FilterNameGroups")
+                        .HasForeignKey("FilterValueId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("CarSale.Entities.MakesAndModels", b =>
+                {
+                    b.HasOne("CarSale.Entities.Make", "FilterMakeOf")
+                        .WithMany("MakesAndModels")
+                        .HasForeignKey("FilterMakeId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CarSale.Entities.FilterValue", "FilterValueOf")
+                        .WithMany("MakesAndModels")
+                        .HasForeignKey("FilterValueId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
