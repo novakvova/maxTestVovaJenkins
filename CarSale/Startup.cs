@@ -1,11 +1,14 @@
 using CarSale.Entities;
+using Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace CarSale
 {
@@ -31,10 +34,16 @@ namespace CarSale
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequiredUniqueChars = 2;
+            })
+              .AddEntityFrameworkStores<DBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services, IConfiguration config)
         {
             if (env.IsDevelopment())
             {
@@ -54,6 +63,7 @@ namespace CarSale
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            app.UseAuthentication();
 
             app.UseSpa(spa =>
             {
@@ -67,7 +77,7 @@ namespace CarSale
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 DBContext content = scope.ServiceProvider.GetRequiredService<DBContext>();
-                DBObject.Initial(content);
+                DBObject.Initial(content, services, env, config);
             }
         }
     }
