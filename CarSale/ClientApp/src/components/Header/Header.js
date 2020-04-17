@@ -1,6 +1,6 @@
 ﻿import React, { Component, Fragment } from 'react';
-import NavbarMenu from "./components/Header/NavbarMenu/NavbarMenu"
-import HeaderSearch from "./components/Header/HeaderSearch/HeaderSearch"
+import NavbarMenu from "./NavbarMenu/NavbarMenu"
+import HeaderSearch from "./HeaderSearch/HeaderSearch"
 class Header extends Component {
    
     render() {
