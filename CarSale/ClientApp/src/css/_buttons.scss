@@ -49,15 +49,19 @@
   cursor: pointer;
 }
 
+.btn_account:hover {
+    background-color: $btn--color-primary_5_hover;
+}
+
 .btn_login {
-  margin-top: 7px;
-  margin-right: 3px;
-  border: 2px solid #a6daff;
-  float: right;
-  background-color: $btn--color-primary_2;
-  @include font(14px, $font-sansbold, $font--color-primary_2, 400);
-  text-transform: uppercase;
-  cursor: pointer;
+    margin-top: 7px;
+    margin-right: 3px;
+    border: 2px solid #a6daff;
+    float: right;
+    background-color: $btn--color-primary_2;
+    @include font(14px, $font-sansbold, $font--color-primary_2, 400);
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 .btn_login:hover {
