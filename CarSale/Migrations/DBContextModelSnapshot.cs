@@ -25,7 +25,8 @@ namespace CarSale.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date");
+                    b.Property<string>("Date")
+                        .IsRequired();
 
                     b.Property<int>("Mileage");
 
@@ -33,6 +34,9 @@ namespace CarSale.Migrations
                         .IsRequired();
 
                     b.Property<decimal>("Price");
+
+                    b.Property<string>("State")
+                        .IsRequired();
 
                     b.Property<string>("UniqueName")
                         .IsRequired();

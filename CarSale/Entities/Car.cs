@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace CarSale.Entities
 {
+
+
     [Table("tblCars")]
     public class Car
     {
@@ -14,7 +13,7 @@ namespace CarSale.Entities
         public int Id { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [Required]
         public string UniqueName { get; set; }
@@ -24,10 +23,10 @@ namespace CarSale.Entities
 
         [Required]
         public Decimal Price { get; set; }
-
         [Required]
         public int Mileage { get; set; }
-
+        [Required]
+        public string State { get; set; }
         public virtual ICollection<Filter> Filtres { get; set; }
     }
 }

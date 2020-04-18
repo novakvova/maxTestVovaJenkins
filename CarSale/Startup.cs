@@ -1,3 +1,4 @@
+
 using CarSale.Entities;
 using Entities.Models;
 using Microsoft.AspNetCore.Builder;
@@ -12,16 +13,23 @@ using System;
 
 namespace CarSale
 {
+
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+
+
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DBContext>(options =>
@@ -29,7 +37,6 @@ namespace CarSale
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -42,7 +49,7 @@ namespace CarSale
               .AddEntityFrameworkStores<DBContext>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services, IConfiguration config)
         {
             if (env.IsDevelopment())
@@ -57,13 +64,14 @@ namespace CarSale
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-            app.UseAuthentication();
 
             app.UseSpa(spa =>
             {

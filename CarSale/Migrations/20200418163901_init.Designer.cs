@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarSale.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20200417121323_init")]
+    [Migration("20200418163901_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,8 @@ namespace CarSale.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date");
+                    b.Property<string>("Date")
+                        .IsRequired();
 
                     b.Property<int>("Mileage");
 
@@ -35,6 +36,9 @@ namespace CarSale.Migrations
                         .IsRequired();
 
                     b.Property<decimal>("Price");
+
+                    b.Property<string>("State")
+                        .IsRequired();
 
                     b.Property<string>("UniqueName")
                         .IsRequired();

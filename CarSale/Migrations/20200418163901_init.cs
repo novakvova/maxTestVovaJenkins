@@ -58,11 +58,12 @@ namespace CarSale.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<DateTime>(nullable: false),
+                    Date = table.Column<string>(nullable: false),
                     UniqueName = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    Mileage = table.Column<int>(nullable: false)
+                    Mileage = table.Column<int>(nullable: false),
+                    State = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

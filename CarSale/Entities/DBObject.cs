@@ -171,17 +171,17 @@ namespace CarSale.Entities
 
             #region tblFilterValues - Значення фільтрів
             List<string[]> filterValues = new List<string[]> {
-                new string [] { "Crossover", "Lightweight", "Freight" },
+                new string [] { "Moto", "Lightweight", "Freight" },
                 new string [] { "Diesel", "Gasoline", "Gas"},
                 new string [] {"C6","SPACETOURER","C4 SEDAN","BERLINGO","C-CROSSER","CR-V","PILOT","PASSPORT","FIT","ACCORD","KAMIQ",
                  "YETI","ROOMSTER","OCTAVIA","CITIGO","FORESTER","JUSTY","ASCENT",
-                 "TRIBECA","STELLA","TWINGO","TALISMAN","SANDERO","LATITUDE","KOLEOS","ESPACE","VIVARO","CORSA","FRONTERA",
+                 "TRIBECA","STELLA","Duster","TALISMAN","SANDERO","LATITUDE","KOLEOS","ESPACE","VIVARO","CORSA","FRONTERA",
                  "ANTARA","ADAM","GENESIS","SONATA","CRETA","GRANDEUR","KONA","TERRACAN","SENTRA",
                  "PATROL","ALMERA","GT-R","LAFESTA","LINEA","TORO","TIPO","PANDA","MOBI","BRAVO",
                  "508 RXH","TRAVELLER","208","PEUGEOT 1007","308 GT","EXPERT","TAURUS",
                  "MUSTANG","FOCUS RS","FIESTA","EXPLORER","ALERO","ORLANDO","VIVA","CORVETTE","COBALT","TOURAN","PASSAT",
                  "ATLAS","GOLF","CAMRY","SIENNA","GT 86","S-CLASS CABRIOLET","M-CLASS","V-CLASS","A SEDAN",
-                 "AMG GT S","TTS","S3","Q2","A5","Axela","Tribute","MX-5","X5","750iL","3-series Coupe"},
+                 "AMG GT S","TTS","S3","Q2","A6","Axela","Tribute","MX-5","X5","750iL","3-series Coupe"},
                  new string []{ "Green", "Red", "Blue", "Black", "White", "Gray" },
                  new string[]{"New","Used"}
             };
@@ -236,31 +236,35 @@ namespace CarSale.Entities
                         new Car
                         {
                             //UniqueName = Guid.NewGuid().ToString(),
-                            Date =new DateTime(2018,5,2),
+                            Date ="2018",
                             Price = 28000,
                             Mileage = 0,
-                            Name = "Honda Accord LX"
+                            Name = "Honda Accord LX",
+                            State="New"
                         },
                         new Car
                         {
-                            Date =new DateTime(2012,5,2),
+                            Date ="2012",
                             Price = 20000,
                             Mileage = 200000,
-                            Name = "BMW X5"
+                            Name = "BMW X5",
+                            State="Used"
                         },
                         new Car
                         {
-                            Date =new DateTime(2020,2,2),
+                            Date ="2020",
                             Price = 20223,
                             Mileage = 0,
-                            Name = "Renault Duster"
+                            Name = "Renault Duster",
+                            State="New"
                         },
                         new Car
                         {
-                            Date =new DateTime(2016,5,2),
+                            Date ="2016",
                             Price = 15800,
                             Mileage = 49000,
-                            Name = "Volkswagen Passat B8"
+                            Name = "Volkswagen Passat B8",
+                            State="Used"
                         }
 
             };
@@ -287,15 +291,31 @@ namespace CarSale.Entities
             #region tblFilters -Фільтри
             Filter[] filters =
             {
-                new Filter { FilterNameId = 1, FilterValueId=1, CarId=1 },
+                new Filter { FilterNameId = 1, FilterValueId=2, CarId=1 },
                 new Filter { FilterNameId = 2, FilterValueId=5, CarId=1 },
-                new Filter { FilterNameId = 3, FilterValueId=7, CarId=1 },
-                new Filter { FilterNameId = 4, FilterValueId=93, CarId=1 },
+                new Filter { FilterNameId = 3, FilterValueId=6, CarId=1 },
+                new Filter { FilterNameId = 4, FilterValueId=97, CarId=1 },
+                new Filter { FilterNameId = 5, FilterValueId=99, CarId=1 },
+
 
                 new Filter { FilterNameId = 1, FilterValueId=2, CarId=2 },
-                new Filter { FilterNameId = 2, FilterValueId=6, CarId=2 },
-                new Filter { FilterNameId = 3, FilterValueId=8, CarId=2 },
-                new Filter { FilterNameId = 4, FilterValueId=94, CarId=2 }
+                new Filter { FilterNameId = 1, FilterValueId=5, CarId=2 },
+                new Filter { FilterNameId = 3, FilterValueId=90, CarId=2 },
+                new Filter { FilterNameId = 4, FilterValueId=96, CarId=2 },
+                new Filter { FilterNameId = 5, FilterValueId=100, CarId=2 },
+
+                new Filter { FilterNameId = 1, FilterValueId=2, CarId=3 },
+                new Filter { FilterNameId = 2, FilterValueId=5, CarId=3 },
+                new Filter { FilterNameId = 3, FilterValueId=86, CarId=3 },
+                new Filter { FilterNameId = 4, FilterValueId=98, CarId=3 },
+                new Filter { FilterNameId = 5, FilterValueId=100, CarId=3 },
+
+                new Filter { FilterNameId = 1, FilterValueId=2, CarId=1 },
+                new Filter { FilterNameId = 3, FilterValueId=5, CarId=1 },
+                new Filter { FilterNameId = 3, FilterValueId=27, CarId=1 },
+                new Filter { FilterNameId = 4, FilterValueId=97, CarId=1 },
+                new Filter { FilterNameId = 5, FilterValueId=99, CarId=1 },
+
             };
             foreach (var item in filters)
             {
