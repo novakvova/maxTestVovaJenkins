@@ -36,7 +36,7 @@ namespace CarSale.Controllers
             _context = context;
         }
         [HttpGet("CarsByName")]
-        public IActionResult GetCarsByName(string Name)
+        public IActionResult GetCarsByName(int id)
         {
             var _filters = (from g in _context.Filters
                             select g);
@@ -45,7 +45,7 @@ namespace CarSale.Controllers
             var nameFilters = (from g in _context.FilterNames
                                select g).AsQueryable();
             var cars = (from g in _context.Cars
-                        where g.UniqueName == Name
+                        where g.Id == id
                         select g).AsQueryable();
             string path = "images";
             var resultCar = (from c in cars
