@@ -10,7 +10,7 @@ class Registration extends Component {
  <header>
  </header>
  <main>
-  <div class="loginBox">
+  <div className="loginBox">
    <h2>Create your account!</h2>
   <form>
    <p>Name</p>
