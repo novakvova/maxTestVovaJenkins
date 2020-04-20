@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url(views/registration.css);
 .profile .portfolio {
   margin-top: 30px;
   text-align: center; }
@@ -4203,21 +4204,3 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center; }
-
-h1 {
-  text-align: center;
-  color: #4298d5; }
-
-.btn-primary {
-  width: auto;
-  height: 28px;
-  background-color: #4298d5;
-  color: #fff;
-  font-size: 15px;
-  font-family: open_sansbold;
-  font-weight: 400;
-  text-transform: uppercase;
-  border-radius: 5px;
-  border: 0;
-  cursor: pointer;
-  text-align: center; }
