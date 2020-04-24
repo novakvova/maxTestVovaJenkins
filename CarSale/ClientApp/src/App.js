@@ -8,10 +8,10 @@ import EditProfile from "./components/Profile/EditProfile/EditProfile"
 import ShowProfile from "./components/Profile/ShowProfile/ShowProfile"
 
 export default () => (
-    <Fragment>
-        <Header />
+	<Fragment>
+		<Header />
 		<CarList />
-   <About/>
+		<About />
 		<EditProfile />
 		<ShowProfile />
 	</Fragment>
