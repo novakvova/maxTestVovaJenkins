@@ -9,12 +9,8 @@ class NavbarMenu extends Component {
                         <div className="row">
                             <ul className="navbar-pc d-none d-lg-block">
                                 <li className="home-icon"><i className="fa fa-home fa-2x"></i></li>
-                                <li><a href="#" className="nav-item nav_active">Pre-Owned Cars</a></li>
-                                <li><a href="#" className="nav-item">Finance</a></li>
-                                <li><a href="#" className="nav-item">Service</a></li>
-                                <li><a href="#" className="nav-item">News</a></li>
-                                <li><a href="#" className="nav-item">Careers</a></li>
-                                <li><a href="#" className="nav-item">Meet Our Team</a></li>
+                                <li><a href="#" className="nav-item nav_active">Home</a></li>
+                                <li><a href="#" className="nav-item">Cars</a></li>
                                 <li><a href="#" className="nav-item">Contact Us</a></li>
                                 <li><a href="#" className="nav-item">About Us</a></li>
                                 <button type="submit" className=" btn btn_account">
@@ -35,9 +31,8 @@ class NavbarMenu extends Component {
                                     <div className="burger-line third"></div>
                                     <div className="burger-line fourth"></div>
                                     <nav className="main-menu">
-                                        <a href="#">Pre-Owned Cars</a>
-                                        <a href="#">Service</a>
-                                        <a href="#">Meet Our Team</a>
+                                        <a href="#">Home</a>
+                                        <a href="#">Cars</a>
                                         <a href="#">Contact Us</a>
                                         <a href="#">About Us</a>
                                         <a href="#">Login</a>
