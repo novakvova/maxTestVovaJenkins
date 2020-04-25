@@ -3589,7 +3589,8 @@ ul {
   border: 0px;
   cursor: pointer;
   text-align: center;
-  margin-left: 8%; }
+  margin-left: 8%;
+  margin-top: 7px; }
 
 .btn_account {
   width: 163px;
@@ -3653,7 +3654,8 @@ ul {
   text-transform: uppercase;
   border-radius: 5px;
   cursor: pointer;
-  border: 0px; }
+  border: 0px;
+  margin-top: 7px; }
 
 @media screen and (max-width: 1200px) {
   .btn_account {
@@ -3680,7 +3682,9 @@ ul {
 
 @media screen and (max-width: 770px) {
   .btn_search {
-    margin-left: 9%; } }
+    width: 102px; }
+  .btn_reset {
+    width: 92px; } }
 
 .btn_reset:hover {
   background-color: #4298d5; }
@@ -3827,6 +3831,8 @@ ul {
     color: #4298d5; }
     .navbar-menu .home-icon a {
       text-decoration: none; }
+  .navbar-menu .row {
+    flex-flow: column; }
   .navbar-menu .navbar-pc {
     margin: 10px; }
   .navbar-menu .nav-item {
@@ -3953,8 +3959,10 @@ ul {
     text-align: center;
     padding-top: 20px; }
   .header-search .select-group {
-    text-align: justify;
-    padding: 0 25px; }
+    padding: 0 25px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between; }
   .header-search .select-item {
     width: 45%;
     margin: 10px 0;
