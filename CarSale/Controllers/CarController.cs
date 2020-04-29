@@ -56,7 +56,7 @@ namespace CarSale.Controllers
                              {
                                  Id = c.Id,
                                  Date = c.Date,
-                                 Image = $"{path}/{c.UniqueName}/Photo",
+                                 Image = Directory.GetFiles($"wwwroot/{path}/{c.UniqueName}").ToList(),
                                  Price = c.Price,
                                  Name = c.Name,
                                  UniqueName = c.UniqueName,
@@ -75,9 +75,13 @@ namespace CarSale.Controllers
             var m = GetMakes(i);
             if (m != null)
                 resultCar.filters.Add(m);
+            for (int j = 0; j < resultCar.Image.Count; j++)
+            {
+                resultCar.Image[j] = resultCar.Image[j].Replace("wwwroot/", "");
+            }
+
             return Ok(resultCar);
         }
-
         [HttpGet("GetCarsForUpdate")]
         public IActionResult GetCarsForUpdate(int CarId)
         {

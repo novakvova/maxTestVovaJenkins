@@ -23,6 +23,13 @@ body {
     font-size: 14px;
 }
 
+.unlinkCar {
+    text-decoration: none !important;
+    border-bottom: 0 !important;
+    width: auto;
+    height: auto;
+}
+
 #ads .card-notify-year {
     position: absolute;
     right: -10px;

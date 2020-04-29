@@ -4110,6 +4110,12 @@ body {
   padding: 5px 10px;
   font-size: 14px; }
 
+.unlinkCar {
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  width: auto;
+  height: auto; }
+
 #ads .card-notify-year {
   position: absolute;
   right: -10px;
@@ -4223,3 +4229,36 @@ h1 {
   border: 0;
   cursor: pointer;
   text-align: center; }
+
+.information_block {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 5%;
+  padding: 5px;
+  background-color: white;
+  display: flex; }
+
+.image {
+  vertical-align: top;
+  width: auto;
+  max-height: 370px; }
+
+.carName {
+  font-size: 40px;
+  font-family: open_sansextrabold_italic;
+  color: #4298d5;
+  font-weight: 200;
+  text-align: center; }
+
+.product-price {
+  font-size: 40px;
+  font-family: open_sansbold;
+  color: #ff4444;
+  font-weight: 200;
+  margin: 10px 0;
+  text-align: center; }
+
+.informationCar {
+  align-items: center;
+  margin-left: 20px;
+  display: inline-grid; }

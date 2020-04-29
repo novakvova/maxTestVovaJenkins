@@ -50,7 +50,15 @@ const carList = [
 	//	name: "Mitsubishi ASX"
 	//}
 ]
-const initialState = { carList: [] };
+const selectCar = {
+	state: "",
+	year: "",
+	img: "",
+	price: 0,
+	mileage: 0,
+	name: ""
+}
+const initialState = { carList: [], selectCar:{} };
 
 export const reducer = (state, action) => {
 	state = state || initialState;
@@ -60,6 +68,12 @@ export const reducer = (state, action) => {
 			...state,
 			carList: action.cars
 		};
+	}
+	if (action.type === "GetCarsById") {
+		return Object.assign({}, state, {
+			selectCar: action.car
+			
+		})
 	}
 	return state;
 };
