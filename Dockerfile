@@ -7,8 +7,7 @@ WORKDIR /ClientApp
 COPY CarSale/ClientApp/ .
 COPY CarSale/ClientApp/ .
 RUN npm install
-COPY CarSale/ClientApp/ . 
-RUN npm start  
+COPY CarSale/ClientApp/ .  
 FROM microsoft/dotnet:2.2-sdk AS build
 ENV BuildingDocker true
 WORKDIR /src

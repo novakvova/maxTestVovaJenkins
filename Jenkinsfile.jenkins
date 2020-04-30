@@ -15,7 +15,7 @@ pipeline  {
             steps {
                 echo 'Creating docker image ...'
                 dir('.'){
-                  sh "docker build -t carsale . "
+                  sh "docker build -t maxnechiporuk/carsale . "
                 }
             }
         }
@@ -37,30 +37,30 @@ pipeline  {
 //                '''
 //            }
 //        }
-//        stage("docker stop") {
-//           steps {
-//                echo " ============== stoping all images =================="
-//                sh '''
-//                docker stop contact-list
-//                '''
-//            }
-//       } 
-//        stage("docker remove") {
-//           steps {
-//                echo " ============== removing all docker containers =================="
-//                sh '''
-//                docker rm contact-list
-//                '''
-//            }
-//        }
-//        stage("docker run") {
-//            steps {
-//                echo " ============== starting chatterbox =================="
-//                sh '''
-//               docker run -d --restart=always --name contact-list -p 80:3000 maxnechiporuk/react-contact-list
-//                '''
-//            }
-//       }
+       stage("docker stop") {
+          steps {
+               echo " ============== stoping all images =================="
+               sh '''
+               docker stop carsale
+               '''
+           }
+      } 
+       stage("docker remove") {
+          steps {
+               echo " ============== removing all docker containers =================="
+               sh '''
+               docker rm carsale
+               '''
+           }
+       }
+       stage("docker run") {
+           steps {
+               echo " ============== starting chatterbox =================="
+               sh '''
+              docker run -d --restart=always --name carsale -p 99:5000 maxnechiporuk/carsale
+               '''
+           }
+      }
         // stage("Deploy to stage server") {
         //     steps {
         //         echo " ============== Running playbook =================="
