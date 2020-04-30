@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route } from 'react-router';
-import {
-
-	withRouter
-
-} from "react-router-dom";
+import {	withRouter } from "react-router-dom";
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
