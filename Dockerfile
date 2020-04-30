@@ -19,5 +19,4 @@ WORKDIR "/src/CarSale"
 RUN dotnet build "CarSale.csproj" -c Release -o /app
 FROM build AS publish
 WORKDIR /app
-
 ENTRYPOINT ["dotnet", "run"]
