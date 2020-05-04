@@ -8,6 +8,9 @@
             text-decoration: none;
         }
     }
+    .row{
+        flex-flow:column
+    }
 
     .navbar-pc {
         margin: 10px;
@@ -186,8 +189,10 @@
     }
 
     .select-group {
-        text-align: justify;
         padding: 0 25px;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
     }
 
     .select-item {
