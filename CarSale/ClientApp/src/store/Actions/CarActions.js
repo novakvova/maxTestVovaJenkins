@@ -1,15 +1,15 @@
 ﻿import axios from "axios";
 
 export const actionCreators = {
-	GetrequestCarList: startDateIndex => async (dispatch) => {
+	GetrequestCarList: (page, count) => async (dispatch) => {
 		const url = `api/Car/GetCars`;
-		let cars;
+		let item;
 		await axios
-			.get(url)
+			.get(url, { params: { page: page, count: count } })
 			.then(response =>
-				cars = response.data);
-		console.log(cars);
-		dispatch({ type: "GetCars", cars });
+				item = response.data);
+		let { cars, countPage } = item;
+		dispatch({ type: "GetCars", cars, countPage });
 		return;
 
 	},
@@ -18,7 +18,7 @@ export const actionCreators = {
 		let car;
 
 		await axios
-			.get(url, { params: {id:id}})
+			.get(url, { params: { id: id } })
 			.then(response =>
 				car = response.data);
 		dispatch({ type: "GetCarsById", car });
