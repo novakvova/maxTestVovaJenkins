@@ -17,18 +17,18 @@ WORKDIR /app
 EXPOSE 80
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y nodejs
 WORKDIR /src
-COPY ["JNew/JNew.csproj", "JNew/"]
-RUN dotnet restore "JNew/JNew.csproj"
+COPY ["CarSale/CarSale.csproj", "CarSale/"]
+RUN dotnet restore "CarSale/CarSale.csproj"
 COPY . .
-WORKDIR "/src/JNew"
-RUN dotnet build "JNew.csproj" -c Release -o /app/build
+WORKDIR "/src/CarSale"
+RUN dotnet build "CarSale.csproj" -c Release -o /app/build
 FROM build AS publish
-RUN dotnet publish "JNew.csproj" -c Release -o /app/publish
+RUN dotnet publish "CarSale.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "JNew.dll"]
+ENTRYPOINT ["dotnet", "CarSale.dll"]
