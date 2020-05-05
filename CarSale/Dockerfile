@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2.0-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
