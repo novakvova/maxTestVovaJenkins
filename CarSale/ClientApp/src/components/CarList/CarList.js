@@ -2,7 +2,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actionCreators } from "../../store/Actions/CarActions";
-
+import { Redirect, Link } from "react-router-dom";
 import CarItem from "./CarItem/CarItem"
 class CarList extends Component {
 
@@ -17,23 +17,22 @@ class CarList extends Component {
 	ensureDataFetched() {
 		this.props.GetrequestCarList(1);
 	}
-
-
-
 	render() {
 		const singleItem = this.props.carList.carList.map(item => {
-
+			let path = "/CarPost/" + item.id;
 			return (
-				<CarItem
-					id={item.id}
-					key={item.id}
-					name={item.name}
-					state={item.state}
-					year={item.date}
-					img={item.image}
-					price={item.price}
-					mileage={item.mileage}
-				/>
+				<Link to={path} className="unlinkCar col-xl-4 col-sm-12 col-md-6">
+					<CarItem
+						id={item.id}
+						key={item.id}
+						name={item.name}
+						state={item.state}
+						year={item.date}
+						img={item.image}
+						price={item.price}
+						mileage={item.mileage}
+					/>
+				</Link>
 			);
 		});
 		return (
