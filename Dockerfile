@@ -5,7 +5,7 @@ EXPOSE 80
 #RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 #RUN apt-get install -y nodejs
 RUN apk --no-cache add nodejs nodejs-npm
-COPY *.csproj .
+COPY *CarSale.csproj .
 RUN dotnet restore
 COPY ./ ./
 RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
