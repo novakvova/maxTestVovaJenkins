@@ -1,4 +1,4 @@
-FROM "microsoft/dotnet:2.2-sdk-alpine" 
+FROM microsoft/dotnet:2.2-sdk-alpine
 WORKDIR /source
 EXPOSE 80
 #EXPOSE 5001
