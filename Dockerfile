@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
+FROM microsoft/dotnet:2.1.2-aspnetcore-runtime
 #install application for get HW info
 RUN apt-get update
 RUN apt-get install -y mc
