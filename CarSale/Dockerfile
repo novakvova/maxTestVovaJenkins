@@ -11,5 +11,5 @@ COPY ./ ./
 RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
 WORKDIR /app
-COPY --from=microsoft/dotnet:2.2-sdk-alpine /source/dist .
+COPY /source/dist .
 ENTRYPOINT ["dotnet", "CarSale.dll"]
