@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk-alpine AS builder
+#FROM microsoft/dotnet:2.2-sdk-alpine AS builder
 WORKDIR /source
 EXPOSE 80
 #EXPOSE 5001
@@ -11,5 +11,5 @@ COPY ./ ./
 RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
 WORKDIR /app
-COPY --from=builder /source/dist .
+COPY --from=microsoft/dotnet:2.2-sdk-alpine /source/dist .
 ENTRYPOINT ["dotnet", "CarSale.dll"]
