@@ -1,34 +1,15 @@
-FROM microsoft/dotnet:2.1.2-aspnetcore-runtime
-#install application for get HW info
-RUN apt-get update
-RUN apt-get install -y mc
-RUN apt-get install -y curl
-RUN apt-get install -y hwinfo
-RUN apt-get install -y busybox
-RUN apt-get install -y iputils-ping
-RUN apt-get install -y nodejs
-#National Language (locale) data
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT false
-RUN apt-get install -y locales
-RUN locale-gen uk_UA.UTF-8
-ENV LC_ALL uk_UA.UTF-8
-ENV LANG uk_UA.UTF-8
-WORKDIR /app
+FROM microsoft/dotnet:2.2-sdk-alpine AS builder
+WORKDIR /source
 EXPOSE 80
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get install -y nodejs
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get install -y nodejs
-WORKDIR /src
-COPY ["CarSale/CarSale.csproj", "CarSale/"]
-RUN dotnet restore "CarSale/CarSale.csproj"
-COPY . .
-WORKDIR "/src/CarSale"
-RUN dotnet build "CarSale.csproj" -c Release -o /app/build
-#FROM build AS publish
-#RUN dotnet publish "CarSale.csproj" -c Release -o /app/publish
-#FROM base AS final
+#EXPOSE 5001
+#RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN apt-get install -y nodejs
+RUN apk --no-cache add nodejs nodejs-npm
+COPY *.csproj .
+RUN dotnet restore
+COPY ./ ./
+RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
+FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
 WORKDIR /app
-COPY --from=build /app/build .
+COPY --from=builder /source/dist .
 ENTRYPOINT ["dotnet", "CarSale.dll"]
