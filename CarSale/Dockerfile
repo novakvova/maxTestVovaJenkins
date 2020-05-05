@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk-alpine AS builder
+FROM "microsoft/dotnet:2.2-sdk-alpine" AS builder
 WORKDIR /source
 EXPOSE 80
 #EXPOSE 5001
