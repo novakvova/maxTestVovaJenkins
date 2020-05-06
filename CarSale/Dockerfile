@@ -4,8 +4,8 @@ EXPOSE 80
 EXPOSE 443
 FROM node:10-alpine as build-node
 WORKDIR /ClientApp
-COPY CarSale/ClientApp/package.json .
-COPY CarSale/ClientApp/package-lock.json .
+COPY /package.json .
+COPY /package-lock.json .
 RUN npm install
 COPY CarSale/ClientApp/ . 
 RUN npm run build  
