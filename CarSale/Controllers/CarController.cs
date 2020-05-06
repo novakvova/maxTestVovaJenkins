@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarSale.Entities;
 using CarSale.Helpers;
+using CarSale.ViewModel;
 using CarSale.ViewModels;
 using Helpers;
 using Image.Help;
@@ -211,7 +212,7 @@ namespace CarSale.Controllers
         }
         //Used
         [HttpGet("GetCars")]
-        public IActionResult GetCars()
+        public Pagination GetCars(int page, int count)
         {
             string path = "images";
             var cars = (from g in _context.Cars
@@ -228,9 +229,13 @@ namespace CarSale.Controllers
                                  State = c.State,
                                  Date = c.Date,
                                  Mileage = c.Mileage
-                             }).ToList();
-
-            return Ok(resultCar);
+                             }).AsQueryable();
+            var pagination = new Pagination()
+            {
+                Cars = PagedList<CarShowVM>.ToPagedList(resultCar, page, count),
+                CountPage = (int)Math.Ceiling(cars.Count / (double)count)
+            };
+            return pagination;
         }
 
         public FNameGetViewModel GetMakes(int id)

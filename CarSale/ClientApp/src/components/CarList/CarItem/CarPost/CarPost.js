@@ -8,19 +8,15 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 
+
 class CarPost extends Component {
-
-
 	constructor() {
 		super();
-
 		this.state = {
 			images: null,
 			mainImage: "",
 			loading: true
 		};
-
-
 	}
 	componentDidMount() {
 		this.ensureDataFetched();
@@ -46,7 +42,7 @@ class CarPost extends Component {
 			currency: 'USD',
 		});
 		price = formatter.format(price);
-		let features, images;
+		let features, images, ImageForGallery;
 		if (!loading) {
 			features = this.props.selectCar.filters.map(item => {
 				return (<li>{item.name}: {item.children.name}</li>)
@@ -54,55 +50,29 @@ class CarPost extends Component {
 			images = this.props.selectCar.image.map(item => {
 				return (<div className="image" data-src={item} />)
 			});
+			ImageForGallery = this.props.selectCar.image.map(item => {
+				return ({
+					source: `${item}`,
+					thumbnail: `${item}`,
+					title: 'Car image'
+				})
+			});
+			console.log(ImageForGallery);
 		}
 		console.log(images);
-
-		//if (this.props.selectCar.image) {
-		//	Object.entries(this.props.selectCar.image);
-		//	console.log((this.props.selectCar.image[0]));
-		//	mainImage = image[0];
-		//}
-		//const images = [
-		//	{
-		//		source: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		thumbnail: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
-		//		title: 'Sopranos 1'
-		//	},
-		//	{
-		//		source: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		//thumbnail: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		title: 'Sopranos 2'
-		//	},
-		//	{
-		//		source: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		//thumbnail: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		title: 'Sopranos 3'
-		//	},
-		//	{
-		//		source: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		//	thumbnail: 'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-		//		title: 'Sopranos 4'
-		//	}
-		//];
-		//<img className="image" src={mainImage} />
 		return (
 
 			loading ? <div className="container"> <ProgressSpinner /></div> :
 
 				<Fragment>
-					<div className="container">
+					<div className="container carPost">
 
 						<div className="row">
 							<div className="information_block">
 								<div className="col-md-7">
-
-									<AwesomeSlider className="image" showPlayButton={false}>
-
+									<AwesomeSlider bullets={false} fullScreen={true} className="image" showPlayButton={false}>
 										{images}
-
 									</AwesomeSlider>
-
-
 								</div>
 								<div className="col-md-5 informationCar">
 									<h2 className="carName">{name}</h2>
@@ -120,9 +90,10 @@ class CarPost extends Component {
 									{features}
 								</ul>
 							</TabPanel>
-							<TabPanel header="Header II">
-								Content II
-								
+							<TabPanel header="Photo">
+								<Lightbox className="imgGallery" type="images" images={ImageForGallery} />
+
+
 							</TabPanel>
 							<TabPanel header="Header III">
 								Content III
@@ -131,21 +102,6 @@ class CarPost extends Component {
 						</TabView>
 					</div>
 				</Fragment>
-			//<div>
-			//	<div className="content-section introduction">
-			//		<div className="feature-intro">
-			//			<h1>Lightbox</h1>
-			//			<p>LightBox is a modal overlay component to display images, videos and inline content.</p>
-			//		</div>
-			//	</div>
-
-			//	<div className="content-section implementation">
-			//		<h3 className="first">Basic</h3>
-			//		<Lightbox type="images" images={images} />
-
-			//		<h3>Content</h3>
-			//	</div>
-			//</div>
 		);
 	}
 }

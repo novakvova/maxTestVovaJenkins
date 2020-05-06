@@ -58,21 +58,23 @@ const selectCar = {
 	mileage: 0,
 	name: ""
 }
-const initialState = { carList: [], selectCar:{} };
+const initialState = { carList: [], selectCar: {}, totalPage: 0 };
 
 export const reducer = (state, action) => {
 	state = state || initialState;
 	if (action.type === "GetCars") {
+		return Object.assign({}, state, {
+			carList: action.cars,
+			totalPage: action.countPage
 
-		return {
-			...state,
-			carList: action.cars
-		};
+
+		})
 	}
 	if (action.type === "GetCarsById") {
 		return Object.assign({}, state, {
 			selectCar: action.car
-			
+
+
 		})
 	}
 	return state;
