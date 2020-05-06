@@ -1,6 +1,6 @@
 FROM microsoft/dotnet:2.2-sdk-alpine AS builder
 WORKDIR /source
-EXPOSE 80
+EXPOSE 99
 #EXPOSE 5001
 #RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 #RUN apt-get install -y nodejs
