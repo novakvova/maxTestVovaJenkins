@@ -12,6 +12,7 @@ import CarList from "./components/CarList/CarList"
 import About from "./components/About/About"
 import EditProfile from "./components/Profile/EditProfile/EditProfile"
 import ShowProfile from "./components/Profile/ShowProfile/ShowProfile"
+
 import CarPost from "./components/CarList/CarItem/CarPost/CarPost"
 function App() {
 	return (
@@ -54,4 +55,3 @@ function App() {
 	);
 }
 export default withRouter(App);
-

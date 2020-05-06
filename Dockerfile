@@ -1,21 +1,15 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
-WORKDIR /app
+FROM microsoft/dotnet:2.2-sdk-alpine
+WORKDIR /source
 EXPOSE 80
-EXPOSE 443
-FROM node:10-alpine as build-node
-WORKDIR /ClientApp
-COPY CarSale/ClientApp/ .
-COPY CarSale/ClientApp/ .
-RUN npm install
-COPY CarSale/ClientApp/ .  
-FROM microsoft/dotnet:2.2-sdk AS build
-ENV BuildingDocker true
-WORKDIR /src
-COPY ["CarSale/CarSale.csproj", "CarSale/"]
-RUN dotnet restore "CarSale/CarSale.csproj"
-COPY . .
-WORKDIR "/src/CarSale"
-RUN dotnet build "CarSale.csproj" -c Release -o /app
-FROM build AS publish
+#EXPOSE 5001
+#RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+#RUN apt-get install -y nodejs
+RUN apk --no-cache add nodejs nodejs-npm
+COPY *CarSale/CarSale.csproj .
+RUN dotnet restore
+COPY ./ ./
+RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
+FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
 WORKDIR /app
-ENTRYPOINT ["dotnet", "run"]
+COPY --from=microsoft/dotnet:2.2-sdk-alpine /source/dist .
+ENTRYPOINT ["dotnet", "CarSale.dll"]
