@@ -1,21 +1,9 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2
+MAINTAINER carsale team
 WORKDIR /app
-EXPOSE 80
-
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
-WORKDIR /src
-COPY ["CarSale/CarSale.csproj", "CarSale/"]
-RUN dotnet restore "CarSale/CarSale.csproj"
-COPY . .
-WORKDIR "/src/CarSale"
-RUN dotnet build "CarSale.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "CarSale.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CarSale.dll"]
+COPY . /app
+RUN apt update -y && apt install -y sudo && apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo bash
+RUN apt install -y nodejs
+RUN npm install ClientApp/
+ENTRYPOINT ["dotnet", "run"]
