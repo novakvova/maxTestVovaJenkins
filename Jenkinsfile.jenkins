@@ -15,7 +15,7 @@ pipeline  {
             steps {
                 echo 'Creating docker image ...'
                 dir('CarSale/.'){
-                  sh "docker build -t maxnechiporuk/carsale . "
+                 // sh "docker build -t maxnechiporuk/carsale . "
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline  {
           steps {
                echo " ============== stoping all images =================="
                sh '''
-               docker stop carsale
+              // docker stop carsale
                '''
            }
       } 
@@ -49,7 +49,7 @@ pipeline  {
           steps {
                echo " ============== removing all docker containers =================="
                sh '''
-               docker rm carsale
+              // docker rm carsale
                '''
            }
        }
@@ -57,7 +57,7 @@ pipeline  {
            steps {
                echo " ============== starting chatterbox =================="
                sh '''
-              docker run -d --restart=always --name carsale -p 99:5000 maxnechiporuk/carsale
+             // docker run -d --restart=always --name carsale -p 99:5000 maxnechiporuk/carsale
                '''
            }
       }
