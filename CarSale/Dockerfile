@@ -1,15 +1,9 @@
-FROM microsoft/dotnet:2.2-sdk-alpine AS builder
-WORKDIR /source
-EXPOSE 80
-#EXPOSE 5001
-#RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-#RUN apt-get install -y nodejs
-RUN apk --no-cache add nodejs nodejs-npm
-COPY *.csproj .
-RUN dotnet restore
-COPY ./ ./
-RUN dotnet publish "./CarSale.csproj" --output "./dist" --configuration Release --no-restore
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2
+MAINTAINER carsale team
 WORKDIR /app
-COPY --from=builder /source/dist .
-ENTRYPOINT ["dotnet", "CarSale.dll"]
+COPY . /app
+RUN apt update -y && apt install -y sudo && apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo bash
+RUN apt install -y nodejs
+RUN npm install ClientApp/
+ENTRYPOINT ["dotnet", "run"]
