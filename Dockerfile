@@ -1,12 +1,8 @@
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine AS base
 # Setup NodeJs
-RUN apt update && \
-    apt install -y wget && \
-    apt install -y gnupg2 && \
-    wget -qO- https://deb.nodesource.com/setup_8.x | bash - && \
-    apt install -y build-essential nodejs
-RUN npm install @angular/cli -g
-# End setup
+RUN apt update -y && apt install -y sudo && apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo bash
+RUN apt install -y nodejs
 
 WORKDIR /app
 EXPOSE 80
