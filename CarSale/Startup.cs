@@ -70,7 +70,9 @@ namespace CarSale
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    // spa.UseReactDevelopmentServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+
                 }
             });
             using (var scope = app.ApplicationServices.CreateScope())
