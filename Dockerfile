@@ -1,7 +1,5 @@
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine AS base
 # Setup NodeJs
-RUN apt-get help
-
 RUN apt update && \
     apt install -y wget && \
     apt install -y gnupg2 && \
