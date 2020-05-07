@@ -10,6 +10,7 @@ COPY ["CarSale.csproj", "CarSale/"]
 RUN dotnet restore "CarSale/CarSale.csproj"
 COPY . .
 WORKDIR "/src/CarSale"
+RUN pwd && ls -l
 RUN dotnet build "CarSale.csproj" -c Release -o /app/build
 
 FROM build AS publish
