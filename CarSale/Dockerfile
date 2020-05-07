@@ -6,6 +6,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
+RUN curl --silent --location https://deb.nodesource.com/setup_13.x | bash -
+RUN apt-get update -y && apt-get install --yes nodejs
 COPY [".", "CarSale/"]
 RUN dotnet restore "CarSale/CarSale.csproj"
 COPY . .
