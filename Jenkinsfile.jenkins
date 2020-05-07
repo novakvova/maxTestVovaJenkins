@@ -57,7 +57,7 @@ pipeline  {
            steps {
                echo " ============== starting chatterbox =================="
                sh '''
-              docker run -d --restart=always --name carsale -p 99:5001 maxnechiporuk/carsale
+              docker run -d --restart=always --name carsale -p 99:5000 maxnechiporuk/carsale
                '''
            }
       }
