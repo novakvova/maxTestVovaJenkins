@@ -6,7 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY ["CarSale.csproj", "CarSale/"]
+COPY [".", "CarSale/"]
 RUN dotnet restore "CarSale/CarSale.csproj"
 COPY . .
 WORKDIR "/src/CarSale"
