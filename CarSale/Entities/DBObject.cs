@@ -778,6 +778,7 @@ namespace CarSale.Entities
                         context.Cars.Add(item.car);
                         context.SaveChanges();
                     }
+
                 }
             }
             #endregion
@@ -1312,7 +1313,7 @@ namespace CarSale.Entities
                 }
             }
             var Users = context.Users.ToList();
-            for (int i = 1, j = 0; i <= 72; i++, j++)
+            for (int i = 1, j = 0; i <= 64; i++, j++)
             {
                 var item = new UserCar { CarId = i, UserId = Users[j].Id };
                 var check = context.userCars.SingleOrDefault(p => p == item);

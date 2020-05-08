@@ -8,13 +8,16 @@ using CarSale.Entities;
 using CarSale.Helpers;
 using CarSale.ViewModel;
 using CarSale.ViewModels;
+using Entities.Models;
 using Helpers;
 using Image.Help;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using ShopCarApi.Helpers;
 
 namespace CarSale.Controllers
@@ -27,14 +30,35 @@ namespace CarSale.Controllers
         private readonly DBContext _context;
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _env;
-
+        IServiceScope scope;
+        UserManager<AppUser> managerUser;
+        RoleManager<IdentityRole> managerRole;
         public CarController(IHostingEnvironment env,
             IConfiguration configuration,
-            DBContext context)
+            DBContext context, IServiceProvider services)
         {
             _configuration = configuration;
             _env = env;
             _context = context;
+            scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            managerUser = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+            managerRole = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        }
+        [HttpGet("OwnerByCarId")]
+        public ShowUserViewModel OwnerByCarId(int id)
+        {
+            var query = _context.userCars.SingleOrDefault((car) => car.CarId == id);
+            var user = _context.Users.SingleOrDefault((u) => u.Id == query.UserId);
+            var showUser = new ShowUserViewModel()
+            {
+                City = user.City,
+                Country = user.Country,
+                Email = user.Email,
+                Img = user.Img,
+                Name = user.Name + " " + user.Surname,
+                Phone = user.PhoneNumber
+            };
+            return showUser;
         }
         [HttpGet("CarsById")]
         public IActionResult CarsById(int id)
