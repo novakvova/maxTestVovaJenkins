@@ -18,7 +18,6 @@ class CarListStart extends Component {
 		this.props.GetrequestCarList(1, 6);
 	}
 	render() {
-		console.log(this.props);
 		const singleItem = this.props.carList.carList.map(item => {
 			let path = "/CarPost/" + item.id;
 			return (

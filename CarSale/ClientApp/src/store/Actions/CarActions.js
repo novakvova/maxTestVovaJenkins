@@ -25,4 +25,17 @@ export const actionCreators = {
 		return;
 
 	}
+	,
+	OwnerByCarId: id => async (dispatch) => {
+		const url = `api/Car/OwnerByCarId`;
+		let user;
+
+		await axios
+			.get(url, { params: { id: id } })
+			.then(response =>
+				user = response.data);
+		dispatch({ type: "OwnerByCarId", user });
+		return;
+
+	}
 };
