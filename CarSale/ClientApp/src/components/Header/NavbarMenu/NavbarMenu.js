@@ -10,8 +10,8 @@ class NavbarMenu extends Component {
 						<div className="row">
 							<ul className="navbar-pc d-none d-lg-block">
 								<li className="home-icon"><i className="fa fa-home fa-2x"></i></li>
-								<li><NavLink activeClassName="nav_active" exact href="#" to="/" className="nav-item">Home</NavLink></li>
-								<li><NavLink activeClassName="nav_active" href="#" to="/Cars/1" className="nav-item">Cars</NavLink></li>
+								<li><NavLink activeClassName="nav_active" exact href="#" to="/" className="nav-item">Головна</NavLink></li>
+								<li><NavLink activeClassName="nav_active" href="#" to="/Cars/1" className="nav-item">Автомобілі</NavLink></li>
 								<li><a href="#" className="nav-item">Contact Us</a></li>
 								<li><a href="#" className="nav-item">About Us</a></li>
 								<button type="submit" className=" btn btn_account">
