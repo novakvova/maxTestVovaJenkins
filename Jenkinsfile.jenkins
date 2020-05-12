@@ -20,16 +20,16 @@ pipeline  {
                 }
             }
         }
-        stage("docker login") {
-            steps {
-                echo " ============== docker login =================="
-                withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh '''
-                    docker login -u $USERNAME -p $PASSWORD
-                    '''
-                }
-            }
-        }
+//        stage("docker login") {
+//            steps {
+//                echo " ============== docker login =================="
+//                withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+//                    sh '''
+//                    docker login -u $USERNAME -p $PASSWORD
+//                    '''
+//                }
+//            }
+//        }
 
        
 
@@ -61,7 +61,7 @@ pipeline  {
            steps {
                echo " ============== starting chatterbox =================="
                sh '''
-              docker run -d --restart=always --name carsale -p 80:80 maxnechiporuk/carsale
+              docker run -d --restart=always --name carsale -p 80:80 novakvova/carsale
                '''
            }
       }
