@@ -12,6 +12,14 @@ pipeline  {
     }
     stages {
 
+		stage("Create docker image") {
+            steps {
+                echo 'Creating docker image ...'
+                dir('CarSale/.'){
+                  sh "docker build -t novakvova/carsale . "
+                }
+            }
+        }
         stage("docker login") {
             steps {
                 echo " ============== docker login =================="
@@ -23,14 +31,7 @@ pipeline  {
             }
         }
 
-        stage("Create docker image") {
-            steps {
-                echo 'Creating docker image ...'
-                dir('CarSale/.'){
-                  sh "docker build -t maxnechiporuk/carsale . "
-                }
-            }
-        }
+       
 
 //        stage("docker push") {
 //            steps {
